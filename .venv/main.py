@@ -1,41 +1,63 @@
 import pyttsx3
+from openai import OpenAI
 
-def text_to_speech(num, gender, text):
+def create_response(character):
+    response = client.responses.create(
+    model="gpt-4.1",
+    input="Tell me about " + character + "."
+)
+    return response.output_text
+
+def text_to_speech(num, gender, character):
     engine = pyttsx3.init()
 
-    # RATE
-    rate = engine.getProperty('rate')   # getting details of current speaking rate
-    print (rate)                        # printing current voice rate
-    engine.setProperty('rate', 200)     # setting up new voice rate
-
-    # VOLUME
-    volume = engine.getProperty('volume')   # getting to know current volume level (min=0 and max=1)
-    print (volume)                          # printing current volume level
-    engine.setProperty('volume',5.0)        # setting up volume level  between 0 and 1
-
-    # VOICE
-    voices = engine.getProperty('voices')       # getting details of current voice
-    engine.setProperty('voice', voices[num].id)  # changing index, changes voices. o for male
+    engine.setProperty('rate', 200) 
+    engine.setProperty('volume',5.0)        
+    voices = engine.getProperty('voices')      
+    engine.setProperty('voice', voices[num].id)  # changing index, changes voices. 0 for male, 1 for female
     if gender == "male":
+        if character == "1":
+            text = create_response("Santa Clause")
+        if character == "2":
+            text = create_response("Abraham Lincoln")
+        if character == "3":
+            text = create_response("Robin Williams")
         engine.say(text)
     if gender == "female":
+        if character == "1":
+            text = create_response("Tooth Fairy")
+        if character == "2":
+            text = create_response("Harriet Tubbman")
+        if character == "3":
+            text = create_response("Amy Winehouse")
         engine.say(text)
+
     engine.runAndWait()
     engine.stop()
 
 game_over = False
+client = OpenAI()
 while not game_over:
     print(f"Please enter a corresponding input. \n" + "1. Male Text-To-Speech \n" + "2. Female Text-To-Speech \n" + "3. Quit")
     user_input = input("> ")
     if user_input == "1":
-        user_text = input("What would you like to say? \n" + "> ")
-        text_to_speech(0, "male", user_text)
+        print("Who would you like to talk to?")
+        character = input("1. Santa Clause \n" + "2. Abraham Lincoln \n" + "3. Robin Williams \n" + "> ")
+        text_to_speech(0, "male", character)
+
     if user_input == "2":
-        user_text = input("What would you like to say? \n" + "> ")
-        text_to_speech(1, "female", user_text)
+        print("Who would you like to talk to?")
+        character = input("1. Tooth Fairy \n" + "2. Harriet Tubbman \n" + "3. Amy Winehouse \n" + "> ")
+        text_to_speech(1, "female", character)
 
     if user_input == "3":
         game_over = True
+
+
+
+
+
+
 
 
 
