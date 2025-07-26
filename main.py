@@ -54,11 +54,11 @@ while not game_over:
     if enable_tts.lower() == "yes" or enable_tts == "1":
         print(f"Please enter a corresponding input. \n" + "1. Male Voice \n" + "2. Female Voice \n" + "3. Quit")
         user_input = input("> ")
-        if user_input == "1":
+        if user_input == "1" or user_input.lower() == "male voice":
             character = create_character()
             text_to_speech(0, character)
 
-        if user_input == "2":
+        if user_input == "2" or user_input.lower() == "female voice":
             character = create_character()
             text_to_speech(1, character)
 
