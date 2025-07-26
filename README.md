@@ -1,4 +1,4 @@
-# text_to_speech
+# 7-Day Meal Planner
 
 cd into .venv
 
