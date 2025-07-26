@@ -1,6 +1,6 @@
 # 7-Day Meal Planner
 
-cd into .venv
+cd .venv
 
 pip install
 
