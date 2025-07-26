@@ -33,7 +33,9 @@ python -m venv .venv
 ### 3. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install pyttsx3
+pip install openai
+pip install python-dotenv
 ```
 
 ### 4. Set your OpenAI API key
@@ -56,7 +58,7 @@ python main.py
 
 ```text
 Hello, what is your name?
-> Seth
+> George
 
 Nice to meet you Seth! What is your age?
 > 28
